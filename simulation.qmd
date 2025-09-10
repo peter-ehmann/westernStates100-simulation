@@ -1,0 +1,104 @@
+---
+title: "2024 Western States 100 Lottery"
+format: html
+editor: visual
+---
+
+```{r}
+tix001 <- (1:4122)
+tix002 <- (1:2461) + max(tix001)
+tix004 <- (1:1472) + max(tix002)
+tix008 <- (1:870)  + max(tix004)
+tix016 <- (1:441)  + max(tix008)
+tix032 <- (1:319)  + max(tix016)
+tix064 <- (1:202)  + max(tix032)
+tix128 <- (1:84)   + max(tix064)
+tix256 <- (1:21)   + max(tix128)
+tix512 <- (1:1)    + max(tix256)
+
+tickets  <- c(rep(tix001,1),
+              rep(tix002,2),
+              rep(tix004,4),
+              rep(tix008,8),
+              rep(tix016,16),
+              rep(tix032,32),
+              rep(tix064,64),
+              rep(tix128,128),
+              rep(tix256,256),
+              rep(tix512,512))
+
+length(tickets)         # 68724 tickets
+length(unique(tickets)) #  9993 entrants
+
+counter001 = 0
+counter002 = 0
+counter004 = 0
+counter008 = 0
+counter016 = 0
+counter032 = 0
+counter064 = 0
+counter128 = 0
+counter256 = 0
+counter512 = 0
+
+n_sim   = 100000
+
+for (i in 1:n_sim) {
+  winners   <- c()
+  while(length(winners)<271) {
+    selection <- sample(tickets, size = 1, replace = F)
+    winners   <- unique(c(winners,selection))
+  }
+  if (sum(tix001[1] %in% winners)>0) {
+    counter001 = counter001 + 1
+  }
+  if (sum(tix002[1] %in% winners)>0) {
+    counter002 = counter002 + 1
+  }
+  if (sum(tix004[1] %in% winners)>0) {
+    counter004 = counter004 + 1
+  }
+  if (sum(tix008[1] %in% winners)>0) {
+    counter008 = counter008 + 1
+  }
+  if (sum(tix016[1] %in% winners)>0) {
+    counter016 = counter016 + 1
+  }
+  if (sum(tix032[1] %in% winners)>0) {
+    counter032 = counter032 + 1
+  }
+  if (sum(tix064[1] %in% winners)>0) {
+    counter064 = counter064 + 1
+  }
+  if (sum(tix128[1] %in% winners)>0) {
+    counter128 = counter128 + 1
+  }
+  if (sum(tix256[1] %in% winners)>0) {
+    counter256 = counter256 + 1
+  }
+  if (sum(tix512[1] %in% winners)>0) {
+    counter512 = counter512 + 1
+  }
+}
+
+knitr::kable(
+  data.frame(
+    `Number of tickets` = c(
+      "1 ticket",   "2 tickets",   "4 tickets",   "8 tickets",   "16 tickets",
+      "32 tickets", "64 tickets",  "128 tickets", "256 tickets", "512 tickets"),
+    `Percent Chance` = c(
+      paste0(format(round(counter001*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter002*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter004*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter008*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter016*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter032*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter064*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter128*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter256*100/n_sim,2),nsmall=2),"%"),
+      paste0(format(round(counter512*100/n_sim,2),nsmall=2),"%")
+    )
+  )
+)
+
+```
