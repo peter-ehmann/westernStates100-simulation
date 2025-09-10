@@ -1,35 +1,80 @@
 ---
 title: "2024 Western States 100 Lottery"
-format: html
+author: "Peter Ehmann"
+date: '`r Sys.Date()`'
+format:
+  html:
+    toc: true
+    toc-location: left
+    toc-expand: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 3
+    theme: zephyr
+    grid:
+      sidebar-width: 250px
+      body-width: 1350px
+      margin-width: 0px
+      gutter-width: 1.5rem
 editor: visual
+execute: 
+  echo: true
+  message: false
+  warning: false
+  output: asis
 ---
 
+Number of people with the respective number of tickets. This will change year-to-year.
+
 ```{r}
-tix001 <- (1:4122)
-tix002 <- (1:2461) + max(tix001)
-tix004 <- (1:1472) + max(tix002)
-tix008 <- (1:870)  + max(tix004)
-tix016 <- (1:441)  + max(tix008)
-tix032 <- (1:319)  + max(tix016)
-tix064 <- (1:202)  + max(tix032)
-tix128 <- (1:84)   + max(tix064)
-tix256 <- (1:21)   + max(tix128)
-tix512 <- (1:1)    + max(tix256)
+one            <- 4122
+two            <- 2461
+four           <- 1472
+eight          <- 870
+sixteen        <- 441
+thirtytwo      <- 319
+sixtyfour      <- 202
+onetwentyeight <- 84
+twofiftysix    <- 21
+fivetwelve     <- 1
+```
 
-tickets  <- c(rep(tix001,1),
-              rep(tix002,2),
-              rep(tix004,4),
-              rep(tix008,8),
-              rep(tix016,16),
-              rep(tix032,32),
-              rep(tix064,64),
-              rep(tix128,128),
-              rep(tix256,256),
-              rep(tix512,512))
+Creating unique IDs for each individual.
 
-length(tickets)         # 68724 tickets
-length(unique(tickets)) #  9993 entrants
+```{r}
+tix001 <- (1:one)
+tix002 <- (1:two)            + max(tix001)
+tix004 <- (1:four)           + max(tix002)
+tix008 <- (1:eight)          + max(tix004)
+tix016 <- (1:sixteen)        + max(tix008)
+tix032 <- (1:thirtytwo)      + max(tix016)
+tix064 <- (1:sixtyfour)      + max(tix032)
+tix128 <- (1:onetwentyeight) + max(tix064)
+tix256 <- (1:twofiftysix)    + max(tix128)
+tix512 <- (1:fivetwelve)     + max(tix256)
+```
 
+Creating the lottery (entrants can have >1 ticket).
+
+```{r}
+tickets <- c(rep(tix001,1),
+             rep(tix002,2),
+             rep(tix004,4),
+             rep(tix008,8),
+             rep(tix016,16),
+             rep(tix032,32),
+             rep(tix064,64),
+             rep(tix128,128),
+             rep(tix256,256),
+             rep(tix512,512))
+```
+
+Number of entrants: `r length(unique(tickets))`
+Number of tickets: `r length(tickets)`
+
+Initialize the simulation. These counters for the number of simulations in which a person with that number of tickets is selected.
+
+```{r}
 counter001 = 0
 counter002 = 0
 counter004 = 0
@@ -40,8 +85,12 @@ counter064 = 0
 counter128 = 0
 counter256 = 0
 counter512 = 0
+```
 
-n_sim   = 100000
+Perform simulations.
+
+```{r}
+n_sim = 100
 
 for (i in 1:n_sim) {
   winners   <- c()
@@ -80,7 +129,11 @@ for (i in 1:n_sim) {
     counter512 = counter512 + 1
   }
 }
+```
 
+Table of results.
+
+```{r}
 knitr::kable(
   data.frame(
     `Number of tickets` = c(
@@ -100,5 +153,4 @@ knitr::kable(
     )
   )
 )
-
 ```
