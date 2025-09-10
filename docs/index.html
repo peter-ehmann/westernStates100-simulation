@@ -77,7 +77,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#lottery-entrants" id="toc-lottery-entrants" class="nav-link" data-scroll-target="#lottery-entrants">Lottery Entrants</a></li>
+  <li><a href="#simulation-results" id="toc-simulation-results" class="nav-link" data-scroll-target="#simulation-results">Simulation Results</a></li>
+  </ul>
+</nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 </div>
@@ -112,111 +120,144 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Number of people with the respective number of tickets. This will change year-to-year.</p>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>one            <span class="ot">&lt;-</span> <span class="dv">4122</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>two            <span class="ot">&lt;-</span> <span class="dv">2461</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>four           <span class="ot">&lt;-</span> <span class="dv">1472</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>eight          <span class="ot">&lt;-</span> <span class="dv">870</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sixteen        <span class="ot">&lt;-</span> <span class="dv">441</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>thirtytwo      <span class="ot">&lt;-</span> <span class="dv">319</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sixtyfour      <span class="ot">&lt;-</span> <span class="dv">202</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>onetwentyeight <span class="ot">&lt;-</span> <span class="dv">84</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>twofiftysix    <span class="ot">&lt;-</span> <span class="dv">21</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fivetwelve     <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Creating unique IDs for each individual.</p>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tix001 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>one)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tix002 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>two)            <span class="sc">+</span> <span class="fu">max</span>(tix001)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tix004 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>four)           <span class="sc">+</span> <span class="fu">max</span>(tix002)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tix008 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>eight)          <span class="sc">+</span> <span class="fu">max</span>(tix004)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tix016 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>sixteen)        <span class="sc">+</span> <span class="fu">max</span>(tix008)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tix032 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>thirtytwo)      <span class="sc">+</span> <span class="fu">max</span>(tix016)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tix064 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>sixtyfour)      <span class="sc">+</span> <span class="fu">max</span>(tix032)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tix128 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>onetwentyeight) <span class="sc">+</span> <span class="fu">max</span>(tix064)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tix256 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>twofiftysix)    <span class="sc">+</span> <span class="fu">max</span>(tix128)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>tix512 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>fivetwelve)     <span class="sc">+</span> <span class="fu">max</span>(tix256)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Creating the lottery (entrants can have &gt;1 ticket).</p>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tickets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(tix001,<span class="dv">1</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix002,<span class="dv">2</span>),</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix004,<span class="dv">4</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix008,<span class="dv">8</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix016,<span class="dv">16</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix032,<span class="dv">32</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix064,<span class="dv">64</span>),</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix128,<span class="dv">128</span>),</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix256,<span class="dv">256</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix512,<span class="dv">512</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Number of entrants: 9993 Number of tickets: 68724</p>
-<p>Initialize the simulation. These counters for the number of simulations in which a person with that number of tickets is selected.</p>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>counter001 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>counter002 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>counter004 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>counter008 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>counter016 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>counter032 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>counter064 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>counter128 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>counter256 <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>counter512 <span class="ot">=</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Perform simulations.</p>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">=</span> <span class="dv">100</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  winners   <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(<span class="fu">length</span>(winners)<span class="sc">&lt;</span><span class="dv">271</span>) {</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    selection <span class="ot">&lt;-</span> <span class="fu">sample</span>(tickets, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> F)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    winners   <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(winners,selection))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix001[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    counter001 <span class="ot">=</span> counter001 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix002[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    counter002 <span class="ot">=</span> counter002 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix004[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    counter004 <span class="ot">=</span> counter004 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix008[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    counter008 <span class="ot">=</span> counter008 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix016[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    counter016 <span class="ot">=</span> counter016 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix032[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    counter032 <span class="ot">=</span> counter032 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix064[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    counter064 <span class="ot">=</span> counter064 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix128[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    counter128 <span class="ot">=</span> counter128 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix256[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    counter256 <span class="ot">=</span> counter256 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix512[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    counter512 <span class="ot">=</span> counter512 <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Table of results.</p>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Number of tickets</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"1 ticket"</span>,   <span class="st">"2 tickets"</span>,   <span class="st">"4 tickets"</span>,   <span class="st">"8 tickets"</span>,   <span class="st">"16 tickets"</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"32 tickets"</span>, <span class="st">"64 tickets"</span>,  <span class="st">"128 tickets"</span>, <span class="st">"256 tickets"</span>, <span class="st">"512 tickets"</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Percent Chance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter001<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter002<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter004<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter008<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter016<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter032<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter064<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter128<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter256<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter512<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>{ What is the lottery? }</p>
+<p><a href="https://www.wser.org/lottery-2/">Lottery Website</a></p>
+<p><a href="https://github.com/peter-ehmann/westernStates100-simulation">Github Repository</a></p>
+</section>
+<section id="lottery-entrants" class="level3">
+<h3 class="anchored" data-anchor-id="lottery-entrants">Lottery Entrants</h3>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of people with the respective number of tickets</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this will change year-to-year</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>one            <span class="ot">&lt;-</span> <span class="dv">4122</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>two            <span class="ot">&lt;-</span> <span class="dv">2461</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>four           <span class="ot">&lt;-</span> <span class="dv">1472</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>eight          <span class="ot">&lt;-</span> <span class="dv">870</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sixteen        <span class="ot">&lt;-</span> <span class="dv">441</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>thirtytwo      <span class="ot">&lt;-</span> <span class="dv">319</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sixtyfour      <span class="ot">&lt;-</span> <span class="dv">202</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>onetwentyeight <span class="ot">&lt;-</span> <span class="dv">84</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>twofiftysix    <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>fivetwelve     <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create unique IDs for each individual</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>tix001 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>one)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>tix002 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>two)            <span class="sc">+</span> <span class="fu">max</span>(tix001)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>tix004 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>four)           <span class="sc">+</span> <span class="fu">max</span>(tix002)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>tix008 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>eight)          <span class="sc">+</span> <span class="fu">max</span>(tix004)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>tix016 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>sixteen)        <span class="sc">+</span> <span class="fu">max</span>(tix008)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>tix032 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>thirtytwo)      <span class="sc">+</span> <span class="fu">max</span>(tix016)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>tix064 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>sixtyfour)      <span class="sc">+</span> <span class="fu">max</span>(tix032)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>tix128 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>onetwentyeight) <span class="sc">+</span> <span class="fu">max</span>(tix064)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>tix256 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>twofiftysix)    <span class="sc">+</span> <span class="fu">max</span>(tix128)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>tix512 <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">:</span>fivetwelve)     <span class="sc">+</span> <span class="fu">max</span>(tix256)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># create the lottery tickets (entrants can have &gt;1 ticket)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>tickets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(tix001,<span class="dv">1</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix002,<span class="dv">2</span>),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix004,<span class="dv">4</span>),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix008,<span class="dv">8</span>),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix016,<span class="dv">16</span>),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix032,<span class="dv">32</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix064,<span class="dv">64</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix128,<span class="dv">128</span>),</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix256,<span class="dv">256</span>),</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix512,<span class="dv">512</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p>{ Insert table here }</p>
+<p>Number of entrants: 9993</p>
+<p>Number of tickets: 68724</p>
+</section>
+<section id="simulation-results" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-results">Simulation Results</h3>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize the simulation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># these counters for the number of simulations in which a person with that number of tickets is selected</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>counter001 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>counter002 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>counter004 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>counter008 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>counter016 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>counter032 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>counter064 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>counter128 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>counter256 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>counter512 <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># number of simulations</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">=</span> <span class="dv">100</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># simulation for loop</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  winners   <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(<span class="fu">length</span>(winners)<span class="sc">&lt;</span><span class="dv">271</span>) {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    selection <span class="ot">&lt;-</span> <span class="fu">sample</span>(tickets, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> F)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    winners   <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(winners,selection))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix001[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    counter001 <span class="ot">=</span> counter001 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix002[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    counter002 <span class="ot">=</span> counter002 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix004[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    counter004 <span class="ot">=</span> counter004 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix008[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    counter008 <span class="ot">=</span> counter008 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix016[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    counter016 <span class="ot">=</span> counter016 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix032[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    counter032 <span class="ot">=</span> counter032 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix064[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    counter064 <span class="ot">=</span> counter064 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix128[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    counter128 <span class="ot">=</span> counter128 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix256[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    counter256 <span class="ot">=</span> counter256 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">sum</span>(tix512[<span class="dv">1</span>] <span class="sc">%in%</span> winners)<span class="sc">&gt;</span><span class="dv">0</span>) {</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    counter512 <span class="ot">=</span> counter512 <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co"># output table of results</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Number of tickets</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="st">"1 ticket"</span>,   <span class="st">"2 tickets"</span>,   <span class="st">"4 tickets"</span>,   <span class="st">"8 tickets"</span>,   <span class="st">"16 tickets"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      <span class="st">"32 tickets"</span>, <span class="st">"64 tickets"</span>,  <span class="st">"128 tickets"</span>, <span class="st">"256 tickets"</span>, <span class="st">"512 tickets"</span>),</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Percent Chance</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter001<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter002<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter004<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter008<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter016<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter032<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter064<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter128<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter256<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(counter512<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>n_sim,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table">
 <thead>
@@ -228,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 ticket</td>
-<td style="text-align: left;">2.00%</td>
+<td style="text-align: left;">0.00%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 tickets</td>
@@ -236,27 +277,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4 tickets</td>
-<td style="text-align: left;">0.00%</td>
+<td style="text-align: left;">2.00%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8 tickets</td>
-<td style="text-align: left;">3.00%</td>
+<td style="text-align: left;">5.00%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16 tickets</td>
-<td style="text-align: left;">3.00%</td>
+<td style="text-align: left;">12.00%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">32 tickets</td>
-<td style="text-align: left;">8.00%</td>
+<td style="text-align: left;">13.00%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">64 tickets</td>
-<td style="text-align: left;">25.00%</td>
+<td style="text-align: left;">32.00%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">128 tickets</td>
-<td style="text-align: left;">48.00%</td>
+<td style="text-align: left;">50.00%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">256 tickets</td>
@@ -264,11 +305,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">512 tickets</td>
-<td style="text-align: left;">91.00%</td>
+<td style="text-align: left;">90.00%</td>
 </tr>
 </tbody>
 </table>
 </div>
+</section>
 
 </main>
 <!-- /main column -->
