@@ -2,8 +2,9 @@
 title: "2024 Western States 100 Lottery"
 author: "Peter Ehmann"
 date: '`r Sys.Date()`'
-format:
-  html:
+project:
+  output-dir: docs
+  website:
     toc: true
     toc-location: left
     toc-expand: true
@@ -17,7 +18,7 @@ format:
       body-width: 1250px
       margin-width: 100px
       gutter-width: 1.5rem
-editor: visual
+editor: source
 execute: 
   echo: true
   message: false
