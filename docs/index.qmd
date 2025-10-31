@@ -1,5 +1,5 @@
 ---
-title: "2024 Western States 100 Lottery"
+title: "2025 Western States 100 Lottery"
 author: "Peter Ehmann"
 date: '`r Sys.Date()`'
 format:
