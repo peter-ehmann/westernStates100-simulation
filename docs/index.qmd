@@ -89,7 +89,7 @@ tickets <- c(rep(tix001,1),
 
 ### Simulation Results
 
-I performed 100,000 simulations to approximate the probability of being selected for each ticket count. An exact probability cannot be calculated because once a ticket is selected, every other ticket from that individual is removed from the pool.
+I performed 1,000,000 simulations to approximate the probability of being selected for each ticket count. An exact probability cannot be calculated because once a ticket is selected, every other ticket from that individual is removed from the pool.
 
 ```{r}
 # counters for the number of simulations in which
@@ -108,7 +108,7 @@ counter512 <- 0
 
 # number of simulations
 
-n_sim <- 1000
+n_sim <- 1000000
 
 # simulation for-loop
 
