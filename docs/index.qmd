@@ -1,5 +1,5 @@
 ---
-title: "2025 Western States 100 Lottery"
+title: "Western States 100 Lottery"
 author: "Peter Ehmann"
 date: '`r Sys.Date()`'
 format:
@@ -13,8 +13,8 @@ format:
     code-fold: true
     theme: zephyr
     grid:
-      sidebar-width: 250px
-      body-width: 1250px
+      sidebar-width: 200px
+      body-width: 1400px
       margin-width: 100px
       gutter-width: 1.5rem
 editor: source
@@ -27,30 +27,36 @@ execute:
 
 ### Introduction
 
-{ What is the lottery? }
+The Western States 100 mile endurance event is held every June in California since 1874. In a field of 369 runners, 260 can earn a spot on the starting line through a lottery process. Each year, entrants must complete a 100k or 100mi qualifying race. The number of tickets you have in the lottery is 2<sup>n-1</sup>, where *n* is the number of years you have entered to lottery (*n* resets once you are selected).
 
-[Lottery Website](https://www.wser.org/lottery-2/)
+More details are described on the [race website](https://www.wser.org/lottery/).
 
-[Github Repository](https://github.com/peter-ehmann/westernStates100-simulation)
+This year I have 8 tickets because it is my 4<sup>th</sup> year entering the lottery.
+
+| Year | Race                             | Distance | Time     |
+|------|----------------------------------|----------|----------|
+| 2022 | Massanutten Mountain Trails (VA) | 100mi    | 26:32:42 |
+| 2023 | Twisted Branch (NY)              | 100k     | 19:09:25 |
+| 2024 | Twisted Branch (NY)              | 100k     | 18:24:59 |
+| 2025 | Massanutten Mountain Trails (VA) | 100mi    | 22:38:46 |
 
 ### Lottery Entrants
 
 ```{r}
 # number of people with the respective number of tickets
-# this will change year-to-year
 
-one            <- 4122
-two            <- 2461
-four           <- 1472
-eight          <- 870
-sixteen        <- 441
-thirtytwo      <- 319
-sixtyfour      <- 202
-onetwentyeight <- 84
-twofiftysix    <- 21
-fivetwelve     <- 1
+one            <- 4471
+two            <- 2562
+four           <- 1754
+eight          <- 1102
+sixteen        <- 672
+thirtytwo      <- 354
+sixtyfour      <- 241
+onetwentyeight <- 129
+twofiftysix    <- 45
+fivetwelve     <- 5
 
-# create unique IDs for each individual
+# assign each person a unique ID
 
 tix001 <- (1:one)
 tix002 <- (1:two)            + max(tix001)
@@ -63,7 +69,7 @@ tix128 <- (1:onetwentyeight) + max(tix064)
 tix256 <- (1:twofiftysix)    + max(tix128)
 tix512 <- (1:fivetwelve)     + max(tix256)
 
-# create the lottery tickets (entrants can have >1 ticket)
+# create the complete lottery pool
 
 tickets <- c(rep(tix001,1),
              rep(tix002,2),
@@ -77,91 +83,100 @@ tickets <- c(rep(tix001,1),
              rep(tix512,512))
 ```
 
-{ Insert table here }
+**Number of entrants:** `r length(unique(tickets))`
 
-Number of entrants: `r length(unique(tickets))`
-
-Number of tickets: `r length(tickets)`
+**Number of tickets:** `r length(tickets)`
 
 ### Simulation Results
 
-```{r}
-# initialize the simulation
-# these counters for the number of simulations in which a person with that number of tickets is selected
+I performed 100,000 simulations to approximate the probability of being selected for each ticket count. An exact probability cannot be calculated because once a ticket is selected, every other ticket from that individual is removed from the pool.
 
-counter001 = 0
-counter002 = 0
-counter004 = 0
-counter008 = 0
-counter016 = 0
-counter032 = 0
-counter064 = 0
-counter128 = 0
-counter256 = 0
-counter512 = 0
+```{r}
+# counters for the number of simulations in which
+# a person with that number of tickets is selected
+
+counter001 <- 0
+counter002 <- 0
+counter004 <- 0
+counter008 <- 0
+counter016 <- 0
+counter032 <- 0
+counter064 <- 0
+counter128 <- 0
+counter256 <- 0
+counter512 <- 0
 
 # number of simulations
 
-n_sim = 1000
+n_sim <- 1000
 
-# simulation for loop
+# simulation for-loop
 
 for (i in 1:n_sim) {
-  winners   <- c()
-  while(length(winners)<271) {
+  winners <- c()
+  while(length(winners)<260) {
     selection <- sample(tickets, size = 1, replace = F)
     winners   <- unique(c(winners,selection))
   }
-  if (sum(tix001[1] %in% winners)>0) {
-    counter001 = counter001 + 1
-  }
-  if (sum(tix002[1] %in% winners)>0) {
-    counter002 = counter002 + 1
-  }
-  if (sum(tix004[1] %in% winners)>0) {
-    counter004 = counter004 + 1
-  }
-  if (sum(tix008[1] %in% winners)>0) {
-    counter008 = counter008 + 1
-  }
-  if (sum(tix016[1] %in% winners)>0) {
-    counter016 = counter016 + 1
-  }
-  if (sum(tix032[1] %in% winners)>0) {
-    counter032 = counter032 + 1
-  }
-  if (sum(tix064[1] %in% winners)>0) {
-    counter064 = counter064 + 1
-  }
-  if (sum(tix128[1] %in% winners)>0) {
-    counter128 = counter128 + 1
-  }
-  if (sum(tix256[1] %in% winners)>0) {
-    counter256 = counter256 + 1
-  }
-  if (sum(tix512[1] %in% winners)>0) {
-    counter512 = counter512 + 1
-  }
+  if (tix001[1] %in% winners) { counter001 <- counter001 + 1 }
+  if (tix002[1] %in% winners) { counter002 <- counter002 + 1 }
+  if (tix004[1] %in% winners) { counter004 <- counter004 + 1 }
+  if (tix008[1] %in% winners) { counter008 <- counter008 + 1 }
+  if (tix016[1] %in% winners) { counter016 <- counter016 + 1 }
+  if (tix032[1] %in% winners) { counter032 <- counter032 + 1 }
+  if (tix064[1] %in% winners) { counter064 <- counter064 + 1 }
+  if (tix128[1] %in% winners) { counter128 <- counter128 + 1 }
+  if (tix256[1] %in% winners) { counter256 <- counter256 + 1 }
+  if (tix512[1] %in% winners) { counter512 <- counter512 + 1 }
 }
+# calculate percentages for each ticket count
+
+percent001 <- counter001*100/n_sim
+percent002 <- counter002*100/n_sim
+percent004 <- counter004*100/n_sim
+percent008 <- counter008*100/n_sim
+percent016 <- counter016*100/n_sim
+percent032 <- counter032*100/n_sim
+percent064 <- counter064*100/n_sim
+percent128 <- counter128*100/n_sim
+percent256 <- counter256*100/n_sim
+percent512 <- counter512*100/n_sim
 
 # output table of results
 
-knitr::kable(
+kable(
   data.frame(
     `Number of tickets` = c(
       "1 ticket",   "2 tickets",   "4 tickets",   "8 tickets",   "16 tickets",
-      "32 tickets", "64 tickets",  "128 tickets", "256 tickets", "512 tickets"),
-    `Percent Chance` = c(
-      paste0(format(round(counter001*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter002*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter004*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter008*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter016*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter032*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter064*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter128*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter256*100/n_sim,2),nsmall=2),"%"),
-      paste0(format(round(counter512*100/n_sim,2),nsmall=2),"%")
+      "32 tickets", "64 tickets",  "128 tickets", "256 tickets", "512 tickets"
+    ),
+    `Probability` = c(
+      paste0(format(round(percent001),nsmall=2),"%"),
+      paste0(format(round(percent002),nsmall=2),"%"),
+      paste0(format(round(percent004),nsmall=2),"%"),
+      paste0(format(round(percent008),nsmall=2),"%"),
+      paste0(format(round(percent016),nsmall=2),"%"),
+      paste0(format(round(percent032),nsmall=2),"%"),
+      paste0(format(round(percent064),nsmall=2),"%"),
+      paste0(format(round(percent128),nsmall=2),"%"),
+      paste0(format(round(percent256),nsmall=2),"%"),
+      paste0(format(round(percent512),nsmall=2),"%")
+    ),
+    `Number of applicants` = c(
+      one,two,four,eight,sixteen,thirtytwo,sixtyfour,
+      onetwentyeight,twofiftysix,fivetwelve
+    ),
+    `Number selected` = c(
+      format(round(one*percent001/100,1),nsmall=1),
+      format(round(two*percent002/100,1),nsmall=1),
+      format(round(four*percent004/100,1),nsmall=1),
+      format(round(eight*percent008/100,1),nsmall=1),
+      format(round(sixteen*percent016/100,1),nsmall=1),
+      format(round(thirtytwo*percent032/100,1),nsmall=1),
+      format(round(sixtyfour*percent064/100,1),nsmall=1),
+      format(round(onetwentyeight*percent128/100,1),nsmall=1),
+      format(round(twofiftysix*percent256/100,1),nsmall=1),
+      format(round(fivetwelve*percent512/100,1),nsmall=1)
     )
   )
 )
