@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Peter Ehmann">
-<meta name="dcterms.date" content="2025-12-02">
+<meta name="dcterms.date" content="2025-12-03">
 
 <title>Western States 100 Lottery</title>
 <style>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2025</p>
+      <p class="date">December 3, 2025</p>
     </div>
   </div>
   
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level3">
 <h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>The Western States 100 mile endurance event is held every June in California since 1874. In a field of 369 runners, 260 can earn a spot on the starting line through a lottery process. Each year, entrants must complete a 100k or 100mi qualifying race. The number of tickets you have in the lottery is 2<sup>n-1</sup>, where <em>n</em> is the number of years you have entered to lottery (<em>n</em> resets once you are selected).</p>
+<p>The Western States 100 mile endurance event is held every June in California since 1974. In a field of 369 runners, 260 can earn a spot on the starting line through a lottery process. Each year, entrants must complete a 100k or 100mi qualifying race. The number of tickets you have in the lottery is 2<sup>n-1</sup>, where <em>n</em> is the number of years you have entered to lottery (<em>n</em> resets once you are selected).</p>
 <p>More details are described on the <a href="https://www.wser.org/lottery/">race website</a>.</p>
 <p>This year I have 8 tickets because it is my 4<sup>th</sup> year entering the lottery.</p>
 <table class="caption-top table">
@@ -173,12 +173,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># number of people with the respective number of tickets</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>one            <span class="ot">&lt;-</span> <span class="dv">4471</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>two            <span class="ot">&lt;-</span> <span class="dv">2562</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>two            <span class="ot">&lt;-</span> <span class="dv">2563</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>four           <span class="ot">&lt;-</span> <span class="dv">1754</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>eight          <span class="ot">&lt;-</span> <span class="dv">1102</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>sixteen        <span class="ot">&lt;-</span> <span class="dv">672</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>thirtytwo      <span class="ot">&lt;-</span> <span class="dv">354</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sixtyfour      <span class="ot">&lt;-</span> <span class="dv">241</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sixtyfour      <span class="ot">&lt;-</span> <span class="dv">240</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>onetwentyeight <span class="ot">&lt;-</span> <span class="dv">129</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>twofiftysix    <span class="ot">&lt;-</span> <span class="dv">45</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>fivetwelve     <span class="ot">&lt;-</span> <span class="dv">5</span></span>
@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep</span>(tix512,<span class="dv">512</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <p><strong>Number of entrants:</strong> 11335</p>
-<p><strong>Number of tickets:</strong> 93523</p>
+<p><strong>Number of tickets:</strong> 93461</p>
 </section>
 <section id="simulation-results" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-results">Simulation Results</h3>
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_sim) {</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  winners <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span>(<span class="fu">length</span>(winners)<span class="sc">&lt;</span><span class="dv">260</span>) {</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (<span class="fu">length</span>(winners)<span class="sc">&lt;</span><span class="dv">260</span>) {</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    selection <span class="ot">&lt;-</span> <span class="fu">sample</span>(tickets, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> F)</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    winners   <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">c</span>(winners,selection))</span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  }</span>
@@ -276,16 +276,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>      <span class="st">"32 tickets"</span>, <span class="st">"64 tickets"</span>,  <span class="st">"128 tickets"</span>, <span class="st">"256 tickets"</span>, <span class="st">"512 tickets"</span></span>
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Probability</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent001),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent002),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent004),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent008),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent016),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent032),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent064),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent128),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent256),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent512),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent001,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent002,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent004,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent008,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent016,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent032,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent064,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent128,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent256,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>),</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="fu">format</span>(<span class="fu">round</span>(percent512,<span class="dv">2</span>),<span class="at">nsmall=</span><span class="dv">2</span>),<span class="st">"%"</span>)</span>
 <span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    ),</span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Number of applicants</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>      one,two,four,eight,sixteen,thirtytwo,sixtyfour,</span>
@@ -318,49 +318,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1 ticket</td>
-<td style="text-align: left;">0.00%</td>
+<td style="text-align: left;">0.31%</td>
 <td style="text-align: right;">4471</td>
-<td style="text-align: left;">13.9</td>
+<td style="text-align: left;">14.0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2 tickets</td>
-<td style="text-align: left;">1.00%</td>
-<td style="text-align: right;">2562</td>
-<td style="text-align: left;">15.7</td>
+<td style="text-align: left;">0.62%</td>
+<td style="text-align: right;">2563</td>
+<td style="text-align: left;">16.0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4 tickets</td>
-<td style="text-align: left;">1.00%</td>
+<td style="text-align: left;">1.25%</td>
 <td style="text-align: right;">1754</td>
-<td style="text-align: left;">21.5</td>
+<td style="text-align: left;">21.9</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">8 tickets</td>
-<td style="text-align: left;">2.00%</td>
+<td style="text-align: left;">2.48%</td>
 <td style="text-align: right;">1102</td>
-<td style="text-align: left;">27.1</td>
+<td style="text-align: left;">27.3</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">16 tickets</td>
-<td style="text-align: left;">5.00%</td>
+<td style="text-align: left;">4.82%</td>
 <td style="text-align: right;">672</td>
-<td style="text-align: left;">32.7</td>
+<td style="text-align: left;">32.4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">32 tickets</td>
-<td style="text-align: left;">9.00%</td>
+<td style="text-align: left;">9.50%</td>
 <td style="text-align: right;">354</td>
 <td style="text-align: left;">33.6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">64 tickets</td>
-<td style="text-align: left;">18.00%</td>
-<td style="text-align: right;">241</td>
-<td style="text-align: left;">43.6</td>
+<td style="text-align: left;">18.11%</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: left;">43.5</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">128 tickets</td>
-<td style="text-align: left;">33.00%</td>
+<td style="text-align: left;">32.97%</td>
 <td style="text-align: right;">129</td>
 <td style="text-align: left;">42.5</td>
 </tr>
@@ -368,11 +368,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">256 tickets</td>
 <td style="text-align: left;">55.00%</td>
 <td style="text-align: right;">45</td>
-<td style="text-align: left;">24.7</td>
+<td style="text-align: left;">24.8</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">512 tickets</td>
-<td style="text-align: left;">80.00%</td>
+<td style="text-align: left;">79.77%</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: left;">4.0</td>
 </tr>

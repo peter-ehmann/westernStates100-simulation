@@ -27,7 +27,7 @@ execute:
 
 ### Introduction
 
-The Western States 100 mile endurance event is held every June in California since 1874. In a field of 369 runners, 260 can earn a spot on the starting line through a lottery process. Each year, entrants must complete a 100k or 100mi qualifying race. The number of tickets you have in the lottery is 2<sup>n-1</sup>, where *n* is the number of years you have entered to lottery (*n* resets once you are selected).
+The Western States 100 mile endurance event is held every June in California since 1974. In a field of 369 runners, 260 can earn a spot on the starting line through a lottery process. Each year, entrants must complete a 100k or 100mi qualifying race. The number of tickets you have in the lottery is 2<sup>n-1</sup>, where *n* is the number of years you have entered to lottery (*n* resets once you are selected).
 
 More details are described on the [race website](https://www.wser.org/lottery/).
 
@@ -46,12 +46,12 @@ This year I have 8 tickets because it is my 4<sup>th</sup> year entering the lot
 # number of people with the respective number of tickets
 
 one            <- 4471
-two            <- 2562
+two            <- 2563
 four           <- 1754
 eight          <- 1102
 sixteen        <- 672
 thirtytwo      <- 354
-sixtyfour      <- 241
+sixtyfour      <- 240
 onetwentyeight <- 129
 twofiftysix    <- 45
 fivetwelve     <- 5
@@ -114,7 +114,7 @@ n_sim <- 1000000
 
 for (i in 1:n_sim) {
   winners <- c()
-  while(length(winners)<260) {
+  while (length(winners)<260) {
     selection <- sample(tickets, size = 1, replace = F)
     winners   <- unique(c(winners,selection))
   }
@@ -151,16 +151,16 @@ kable(
       "32 tickets", "64 tickets",  "128 tickets", "256 tickets", "512 tickets"
     ),
     `Probability` = c(
-      paste0(format(round(percent001),nsmall=2),"%"),
-      paste0(format(round(percent002),nsmall=2),"%"),
-      paste0(format(round(percent004),nsmall=2),"%"),
-      paste0(format(round(percent008),nsmall=2),"%"),
-      paste0(format(round(percent016),nsmall=2),"%"),
-      paste0(format(round(percent032),nsmall=2),"%"),
-      paste0(format(round(percent064),nsmall=2),"%"),
-      paste0(format(round(percent128),nsmall=2),"%"),
-      paste0(format(round(percent256),nsmall=2),"%"),
-      paste0(format(round(percent512),nsmall=2),"%")
+      paste0(format(round(percent001,2),nsmall=2),"%"),
+      paste0(format(round(percent002,2),nsmall=2),"%"),
+      paste0(format(round(percent004,2),nsmall=2),"%"),
+      paste0(format(round(percent008,2),nsmall=2),"%"),
+      paste0(format(round(percent016,2),nsmall=2),"%"),
+      paste0(format(round(percent032,2),nsmall=2),"%"),
+      paste0(format(round(percent064,2),nsmall=2),"%"),
+      paste0(format(round(percent128,2),nsmall=2),"%"),
+      paste0(format(round(percent256,2),nsmall=2),"%"),
+      paste0(format(round(percent512,2),nsmall=2),"%")
     ),
     `Number of applicants` = c(
       one,two,four,eight,sixteen,thirtytwo,sixtyfour,
